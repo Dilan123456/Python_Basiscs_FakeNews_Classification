@@ -1,16 +1,54 @@
-# Python_Basiscs_FakeNews_Classification
-Projekt: Analyse von Twitter-Daten (X-Daten) zur Erkennung von Fake News
+# Fake News Detection with Machine Learning
 
-Projektmitglieder:
+## Project Overview
+This project focuses on building a machine learning pipeline to automatically detect fake news based on the article content.  
+The goal is to combine textual features and stylistic cues using Natural Language Processing (NLP) and classical ML algorithms to distinguish between real and fake news articles.
+
+## Project Team Members
 Athika Pasupathipillai 
 Dilan Joseph
 Samuel Jucker
 Nina Habegger
- 
-Kurzbeschrieb: In diesem Projekt analysieren wir Twitter-Daten, um Fake News zu erkennen. Unser Ziel ist es,  eine Regressionsanalyse und eine Klassifikation durchzuführen. Dabei werden wir vorgefertigte Datensätze von Plattformen wie Kaggle nutzen und zusätzlich Tweets mittels Web-Scraping erfassen.
 
-Modellierung:
+## Dataset
+The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset) and contains:
 
-Regression: Hier wollen wir ein Modell entwickeln, das die Wahrscheinlichkeit vorhersagt, dass ein Tweet Fake News ist. Die Basis sollen sprachliche Merkmale und Metadaten wie Retweets, Anzahl Likes und             Benutzerinformationen.
+- `Fake.csv` – fake news articles
+- `True.csv` – real news articles
 
-Klassifikation: Mit Machine Learning-Methoden wie Random Forest, Support Vector Machines und Deep Learning sollen Fake Tweets anhand von Sprachstrukturen und Verbreitungsmustern identifiziert.
+Each row includes the article's title, text body, and publication date.
+
+## Methodology
+The pipeline includes the following steps:
+
+1. Data Import & Cleaning
+2. Text Preprocessing & Feature Engineering
+   - Word count
+   - Capital letter ratio
+   - Number of exclamation marks
+   - Sentiment score (VADER)
+3. Exploratory Data Analysis (EDA)
+4. Model Training
+   - Logistic Regression
+   - Random Forest
+   - Calibrated Support Vector Machine (SVM)
+5. Hyperparameter Tuning using GridSearchCV**
+6. Evaluation with metrics: Accuracy, Precision, Recall, F1, ROC-AUC**
+7. Threshold Optimization for best F1-score**
+8. Model Explainability with SHAP (global feature importance)**
+
+## 🤖 Model Comparison
+| Model                  | Key Characteristics                      |
+|------------------------|-------------------------------------------|
+| **Logistic Regression** | Simple, fast, interpretable               |
+| **Random Forest**       | Robust, non-linear, SHAP-compatible       |
+| **Calibrated SVM**      | High performance, calibrated probabilities |
+
+All models are wrapped in pipelines using **TF-IDF** for text vectorization and **scikit-learn transformers**.
+
+## Sample Results
+- F1-scores: **above 0.99** across all models
+- ROC-AUC: high for all models, especially Logistic Regression and Random Forest
+- SHAP analysis revealed meaningful patterns:
+  - Key terms: `reuters`, `trump`, `said`
+  - Style cues: number of exclamation marks, sentiment score
