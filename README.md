@@ -37,7 +37,7 @@ The pipeline includes the following steps:
 7. Threshold Optimization for best F1-score**
 8. Model Explainability with SHAP (global feature importance)**
 
-## 🤖 Model Comparison
+## Model Comparison
 | Model                  | Key Characteristics                      |
 |------------------------|-------------------------------------------|
 | **Logistic Regression** | Simple, fast, interpretable               |
